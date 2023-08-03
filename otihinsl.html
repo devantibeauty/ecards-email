@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    /* Variables*/
+
+    :root{
+        --black: #2e2f28;
+        --white: #f9f4ee;
+        --gray: #d7d0c6;
+        --pink: #fad2dc;
+        --purple: #e2d8fa;
+        --yellow: #fce7a8;
+        --green: #ddeac3;
+        --salmon: #fac6b9;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        color: #2e2f28;
+    }
+
+    body, .mail{
+        padding: 1rem;
+        background-color: #d7d0c6;
+    }
+    .mailContainer{
+        width: 100%;
+        max-width: 40rem;
+        margin: 0 auto;
+    }
+    .mailContainer__header{
+        display: flex;
+        padding: 1rem 0;
+    }
+    .mailContainer__header a{
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: .6rem;
+        text-align: end;
+        width: 100%;
+    }
+    .mailContainer__body{
+        background-color: #f9f4ee !important;
+        padding: 0 0 1rem;
+    }
+    .mailContainer__body--header > img{
+        width: 10%;
+        max-width: 10rem;
+        margin: 0 auto -2rem;
+        object-fit: contain;
+    }
+    .mailContainer__navbar {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .mailContainer__navbar img{
+        width: 100%;
+        max-width: 7rem;
+        min-width: 3rem;
+        height: 100%;
+        object-fit: contain;
+    }
+    .mailContainer__navbar a{
+        display: block;
+        height: 1.7rem;
+    }
+    .mailContainer__navbar span a:hover{
+        opacity: .8;
+    }
+    .mailContainer__navbar span a:not(:last-child):after{
+        content: "|";
+        margin-left: .5rem;
+    }
+    .mailContainer__body--header, .mailContainer__bar, .mailContainer__hero{
+        width: 90%;
+        margin: 1rem auto;
+    }
+    .mailContainer__body--header{
+        margin-top: 0;
+    }
+    .mailContainer__bar{
+        background-color: #e2bac4;
+        padding: 0 1rem;
+        text-align: end;
+    }
+    .mailContainer__bar span{
+        font-size: .5rem;
+    }
+    .mailContainer__hero{
+        text-align: center;
+    }
+    .mailContainer__hero--title{
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 1rem;
+        margin-bottom: .5rem;
+        display: block;   
+    }
+    .mailContainer__hero--subtitle{
+        font-weight: 400;
+        font-size: .9rem;
+        display: block;
+
+    }
+    .mailContainer__hero span{
+        margin-top: 1rem;
+        background-color: #e2bac4;
+        font-weight: 600;
+        width: fit-content;
+        padding: .5rem 1rem;
+        font-size: .9rem;
+        margin: 0 auto;
+        display: block;   
+    }
+    .full-width{
+        width: 100%;
+        object-fit: contain;
+    }
+    .mailContainer__summary{
+        padding: 1rem;
+    }
+    .mailContainer__products{
+        margin: 1rem auto;
+        width: 90%;
+        max-width: 20rem;
+    }
+    .productCard{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 0;
+    }
+    .productCard img{
+        width: 6rem;
+        object-fit: contain;
+        margin-right: 1rem;
+    }
+    .productCard .productCard__info h3{
+        line-height: 1;
+    }
+    .productCard span{
+        font-weight: 500;
+    }
+    .productCard .price .old{
+        text-decoration: line-through;
+        opacity: .7;
+    }
+    .mailContainer__status{
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+    .queryGuideButton{
+        background-color: #2e2f28;
+        padding: .5rem 1rem;
+        text-decoration: none;
+        color: #f9f4ee;
+        font-weight: 600;
+        font-size: .8rem;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .mailContainer__status p{
+        font-size: .8rem;
+        max-width: 15rem;
+        margin: 0 auto;
+        color: #2e2f28;
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+    .mailContainer__status a{
+        display: block;
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .mailContainer__status h3{
+        margin: .5rem 0;
+    }
+    .mailContainer__status h4{
+        font-weight: 400;
+        font-size: .9rem;
+        line-height: 1rem;
+    }
+    .mailBanners{
+        width: 90%;
+        margin: 0 auto;
+        border-spacing: .5rem
+    }
+    .mailBanners a {
+        cursor: pointer;
+    }
+    .mailBanners img{
+        width: 100%;
+    }
+    .mailBanners td{
+        padding: 0 .15rem;
+    }
+    .mailBanners .full{
+        width: 100%;
+    }
+    .mailBanners .half{
+        width: 50%;
+    }
+    .mailContainer__totals{
+        display: block;
+        width: fit-content;
+        margin: 1rem auto;
+    }
+    .mailContainer__totals ul{
+        list-style: none;
+        margin: 1rem auto;
+    }
+    .mailContainer__totals ul li span:nth-child(2){
+        width: 100%;
+    }
+    .orderDetails{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .orderDetails .row{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .row .order-list__item__cell{
+        padding-bottom: 1rem;
+    }
+    .order-list__item-title{
+        line-height: 1;
+    }
+    .order-list__item-variant, .order-list__item-discount-allocation span{
+        font-size: 12px;
+    }
+    .subtotal-line .subtotal-line__value strong{
+        font-size: 1rem;
+    }
+    .total-discount{
+        width: 90%;
+        font-size: .8rem;
+        margin: 0 auto;
+    }
+    .subtotal-lines{
+        padding-top: 1rem;
+    }
+    .bannerFull{
+        margin: 1rem 0 0;
+    }
+    .bannerFull a{
+        cursor: pointer;
+    }
+    .mailContainer__social{
+        margin: 1rem auto;
+        width: fit-content;
+    }
+    .mailSocial{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .mailSocial__title{
+        text-align: center;
+        color: #2e2f28;
+        margin: 1rem 0;
+        letter-spacing: 2px;
+        font-size: .7rem;
+        text-transform: uppercase;
+    }
+    .mailSocial__icons{
+        margin: 0 auto 1rem;
+    }
+    .mailSocial__icons a{
+        cursor: pointer;
+    }
+    .icon{
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: 0 .5rem;
+    }
+    .icon img{
+        width: 100%;
+        object-fit: contain;
+    }
+    .mailContainer__socialCards{
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .socialCard{
+        display: inline-block;
+        width: 6rem;
+        margin: 0 auto;
+        text-decoration: none;
+    }
+    .socialCard .socialCard__footer{
+        background-color: #e2bac4;
+        display: flex;
+        font-weight: 600;
+        font-size: .6rem;
+        justify-content: space-between;
+        padding: 0 1rem;
+    }
+    .socialCard .socialCard__footer img{
+        width: 1rem;
+        object-fit: contain;
+    }
+    .socialCard > img{
+        width: 100%;
+        object-fit: contain;
+    }
+    .socialCard p{
+        line-height: 1;
+        font-size: .7rem;
+        margin-top: .5rem;
+    }
+    .mailContainer__benefits{
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem 0;
+        padding: 1rem;
+        background-color: #2e2f28;
+        
+    }
+    .mailContainer__benefits .benefit{
+        width: 30%;
+    }
+    .mailContainer__benefits .benefit img{
+        display: block;
+        margin: 0 auto;
+        max-height: 3rem;
+    }
+    .mailContainer__benefits .benefit span{
+        display: block;
+        color: #e2bac4;
+        line-height: 1;
+        text-align: center;
+        font-size: .8rem;
+    }
+    .mailContainer__buttons{
+        background-color: #2e2f28;
+        margin: 1rem 0;
+    }
+    .mailContainer__buttons p{
+        color: #fce7a8;
+        margin: 1rem 0;
+        font-size: .7rem;
+        text-transform: uppercase;
+    }
+    .mailContainer__buttons .button{
+        display: flex;
+        height: 2rem;
+        width: 100%;
+        max-width: 15rem;
+    }
+    .mailContainer__buttons .button img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .mailContainer__footer {
+        margin: 1rem 0 0;
+    }
+    .mailContainer__footer span{
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: .5rem;
+        text-transform: uppercase;
+        color: #2e2f28;
+        margin-right: .5rem;
+    }
+
+    .hidden{
+        display: none;
+    }
+
+    @media screen and (min-width: 600px) {
+        .mailContainer__summary{
+            display: flex;
+        }
+        .mailContainer__products{
+            margin: 0 1rem;
+        }
+        .mailContainer__status{
+            padding: 2rem 0;
+        }
+        .mailContainer__products{
+            display: inline-block;
+        }
+        .mailContainer__status{
+            display: table;
+        }
+        .mailContainer__status--container{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .mailContainer__navbar h3 a{
+            font-size: 1.3rem !important;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        .mailContainer__navbar h3 a{
+            font-size: 1rem;
+        }
+    }
+    @media screen and (min-width: 1024px) {
+        .mailContainer__navbar h3 a{
+            font-size: 1.2rem;
+        }
+    }
+</style>
+<body>
+    <main class="mail">
+        <div class="mailContainer">
+            <div class="mailContainer__header">
+                <a href="https://pytcolombia.com?utm_sorce=email&utm_medium=email">pytcolombia.com</a>
+            </div>
+            <div class="mailContainer__body">
+                <div class="mailContainer__body--header">
+                    <table>
+                        <tr>
+                            <center>
+                                <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/mailLogoSmaller.png?v=1674768989" width="70px" alt="Logo PYT">
+                            </center>
+                        </tr>
+                    </table>
+                    <table class="mailContainer__navbar">
+                        <tr>
+                            <td>
+                                <a href="https://pytcolombia.com/collections/all?utm_sorce=email&utm_medium=email">
+                                    <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/HerramientasMenuItem.png?v=1674662431" alt="Herramientas">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://pytcolombia.com/collections/combos?utm_sorce=email&utm_medium=email">
+                                    <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/CombosMenuItem.png?v=1674662431" alt="Combos">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://pytcolombia.com/collections/cosmeticos?utm_sorce=email&utm_medium=email">
+                                    <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/CosmeticosMenuItem.png?v=1674662431" alt="Cosméticos">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://pytcolombia.com/blogs/estilo-de-vida?utm_sorce=email&utm_medium=email">
+                                    <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/BlogMenuItem.png?v=1674662430" alt="Blog">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>                        
+                </div>
+                <div class="mailContainer__bar">
+                    <span><b>Juntas</b> evolucionamos</span>
+                </div>
+                <div class="mailContainer__hero">
+                    <h1 class="mailContainer__hero--title">¡{{ customer.first_name }}, gracias por tu compra!</h1>
+                    <h2 class="mailContainer__hero--subtitle">Tu pedido ha sido recibido y será procesado</h2>
+                    <span>Tu pedido No. {{ order_name }}</span>
+                </div>
+                <div>
+                    <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/procesoCompraMail.png?v=1674602540" alt="Proceso de compra" class="full-width">
+                </div>
+                <div class="mailContainer__summary">
+                    <div class="mailContainer__status">
+                        <div class="mailContainer__status--container">
+                            <p>Estamos preparando tu pedido, puedes consultar su estado justo aquí</p>
+                            <a href="https://pytcolombia.com/pages/consulta-tu-guia?utm_sorce=email&utm_medium=email" class="queryGuideButton">Ver tu pedido</a>
+                        </div>
+                    </div>
+                </div>
+                <section class="orderDetails">
+                    <table class="row">
+                        {% for line in subtotal_line_items %}
+                        <tr class="order-list__item">
+                            <td class="order-list__item__cell" >
+                                <table>
+                                <td>
+                                    {% if line.image %}
+                                    <img src="{{ line | img_url: 'compact_cropped' }}" align="left" width="60" height="60" class="order-list__product-image"/>
+                                    {% endif %}
+                                </td>
+                                <td class="order-list__product-description-cell">
+                                    {% if line.product.title %}	
+                                    {% assign line_title = line.product.title %}	
+                                    {% else %}	
+                                    {% assign line_title = line.title %}	
+                                    {% endif %}
+                        
+                                    {% if line.quantity < line.quantity %}
+                                    {% capture line_display %} {{ line.quantity }} of {{ line.quantity }} {% endcapture %}
+                                    {% else %}
+                                    {% assign line_display = line.quantity  %}
+                                    {% endif %}
+                        
+                                    <span class="order-list__item-title">{{ line_title }}&nbsp;&times;&nbsp;{{ line_display }}</span><br/>
+                        
+                                    {% if line.variant.title != 'Default Title' %}
+                                    <span class="order-list__item-variant">{{ line.variant.title }}</span><br/>
+                                    {% endif %}
+                        
+                                    {% if line.selling_plan_allocation %}
+                                    <span class="order-list__item-variant">{{ line.selling_plan_allocation.selling_plan.name }}</span><br/>
+                                    {% endif %}
+                        
+                                    {% if line.refunded_quantity > 0 %}
+                                    <span class="order-list__item-refunded">Reembolsado</span>
+                                    {% endif %}
+                        
+                                    {% if line.discount_allocations %}
+                                    {% for discount_allocation in line.discount_allocations %}
+                                        {% if discount_allocation.discount_application.target_selection != 'all' %}
+                                        <span class="order-list__item-discount-allocation">
+                                            <img src="{{ 'notifications/discounttag.png' | shopify_asset_url }}" width="18" height="18" class="discount-tag-icon" />
+                                            <span>
+                                            {{ discount_allocation.discount_application.title | upcase }}
+                                            (-{{ discount_allocation.amount | money }})
+                                            </span>
+                                        </span>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                </td>
+                                    <td class="order-list__price-cell">
+                                    {% if line.original_line_price != line.final_line_price %}
+                                        <del class="order-list__item-original-price">{{ line.original_line_price | money }}</del>
+                                    {% endif %}
+                                    <p class="order-list__item-price">
+                                        {% if line.final_line_price > 0 %}
+                                        {{ line.final_line_price | money }}
+                                        {% else %}
+                                        Gratis
+                                        {% endif %}
+                                    </p>
+                                    </td>
+                                </table>
+                            </td>
+                            </tr>{% endfor %}
+                        </table>
+                        
+                        <table class="row subtotal-lines">
+                            <tr>
+                            <td class="subtotal-spacer"></td>
+                            <td>
+                                <table class="row subtotal-table">
+                                {% for discount_application in discount_applications %}
+                                    {% if discount_application.target_selection == 'all' %}
+                                    {% capture discount_title %}
+                                        {% if discount_application.title %}
+                                        {{ discount_application.title | upcase }}
+                                        {% else %}
+                                        Descuento
+                                        {% endif %}
+                                    {% endcapture %}
+                                    
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Descuento</span>
+                                <span class="subtotal-line__discount">
+                                    <img src="{{ 'notifications/discounttag.png' | shopify_asset_url }}" width="18" height="18" class="discount-tag-icon" />
+                                    <span class="subtotal-line__discount-title">{{ discount_title }}</span>
+                                </span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>-{{ discount_application.total_allocated_amount | money }}</strong>
+                            </td>
+                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Subtotal</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ subtotal_price | money }}</strong>
+                            </td>
+                        </tr>
+                        
+                                {% if delivery_method == 'pick-up' %}
+                                    
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Retiro</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ shipping_price | money }}</strong>
+                            </td>
+                        </tr>
+                        
+                                {% else %}
+                                    
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Envíos</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ shipping_price | money }}</strong>
+                            </td>
+                        </tr>
+                        
+                                {% endif %}
+                        
+                                {% if current_total_duties %}
+                                    
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Aranceles</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ current_total_duties | money }}</strong>
+                            </td>
+                        </tr>
+                        
+                                {% endif %}
+                        
+                                
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Impuestos</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ tax_price | money }}</strong>
+                            </td>
+                        </tr>
+                        
+                        
+                                {% if total_tip and total_tip > 0 %}
+                                    
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Tip</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ total_tip | money }}</strong>
+                            </td>
+                        </tr>
+                        
+                                {% endif %}
+                                </table>
+                                <table class="row subtotal-table subtotal-table--total">
+                                
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Total</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ total_price | money_with_currency }}</strong>
+                            </td>
+                        </tr>
+                                </table>
+                                {% if total_discounts > 0 %}
+                                <p class="total-discount">
+                                    Ahorraste <span class="total-discount--amount">{{ total_discounts | money }}</span>
+                                </p>
+                                {% endif %}
+                        
+                                {% assign transaction_size = 0 %}
+                                {% assign transaction_amount = 0 %}
+                                {% for transaction in transactions %}
+                                {% if transaction.status == "success" %}
+                                {% unless transaction.kind == "authorization" or transaction.kind == "void" %}
+                                    {% assign transaction_size = transaction_size | plus: 1 %}
+                                    {% assign transaction_amount = transaction_amount | plus: transaction.amount %}
+                                {% endunless %}
+                                {% endif %}
+                                {% endfor %}
+                        
+                                {% if transaction_size > 1 or transaction_amount < total_price %}
+                                <table class="row subtotal-table">
+                                    <tr><td colspan="2" class="subtotal-table__line"></td></tr>
+                                    <tr><td colspan="2" class="subtotal-table__small-space"></td></tr>
+                        
+                                    {% for transaction in transactions %}
+                                    {% if transaction.status == "success" and transaction.kind == "capture" or transaction.kind == "sale" %}
+                                        {% if transaction.payment_details.credit_card_company %}
+                                        {% capture transaction_name %}{{ transaction.payment_details.credit_card_company }} (que termina en {{ transaction.payment_details.credit_card_last_four_digits }}){% endcapture %}
+                                        {% else %}
+                                        {% capture transaction_name %}{{ transaction.gateway_display_name }}{% endcapture %}
+                                        {% endif %}    
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>{{transaction_name}}</span>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>{{ transaction.amount | money }}</strong>
+                            </td>
+                        </tr>
+                            {% endif %}
+                            {% if transaction.kind == 'refund' %}
+                                {% if transaction.payment_details.credit_card_company %}
+                                {% assign refund_method_title = transaction.payment_details.credit_card_company %}
+                                {% else %}
+                                {% assign refund_method_title = transaction.gateway %}
+                                {% endif %}           
+                        <tr class="subtotal-line">
+                            <td class="subtotal-line__title">
+                            <p>
+                                <span>Reembolsar</span>
+                                <br>
+                                <small>{{ refund_method_title | capitalize }}</small>
+                            </p>
+                            </td>
+                            <td class="subtotal-line__value">
+                            <strong>- {{ transaction.amount | money }}</strong>
+                            </td>
+                        </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </table>
+                            {% endif %}
+                        </td>
+                        </tr>
+                        </table>
+                                </td>
+                                </tr>
+                        </table>
+                        </center>
+                        </td>
+                        </tr>
+                    </table>
+                </section>
+                <table class="mailBanners">
+                    <tr>
+                        <td colspan="2"><a href="https://api.whatsapp.com/send?phone=573012857145&text=%C2%A1%F0%9F%8E%A0Hola%20PYT%F0%9F%A6%84!%20quiero%20redimir%20mi%2015%25%20de%20descuento"><img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/15_off.png?v=1679951062" alt="Descuento"></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#"><img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/mailBanner2.png?v=1674603299" alt="Capacitaciones"></a></td>
+                        <td><a href="https://pytcolombia.com/pages/capacitacion-uso-de-producto?utm_source=email&utm_medium=email"><img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/mailBanner3.png?v=1674603299" alt="asesoría"></a></td>
+                    </tr>
+                </table>
+                <div class="bannerFull">
+                    <a href="https://api.whatsapp.com/send?phone=573146724915&text=%C2%A1%F0%9F%8E%A0Hola%20PYT%F0%9F%A6%84!%20%20Tengo%20un%20problema%20con%20mi%20pedido">
+                        <img class="full-width" src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/Corregido_79cf4d13-126b-4b49-9b78-6afaf56fe208.png?v=1674770532" alt="Contáctanos">
+                    </a>
+                </div>
+                <table class="mailSocial">
+                    <center>
+                        <tr>
+                            <h5 class="mailSocial__title">Síguenos en:</h5>
+                            <table class="mailSocial__icons">
+                                <tr>
+                                <center>
+                                        <td>
+                                            <a href="https://www.youtube.com/c/PYTColombia" class="icon">
+                                                <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/Youtube.png?v=1674666206" alt="Link a youtube">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.tiktok.com/@pytcolombia?lang=es" class="icon">
+                                                <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/Titkok.png?v=1674666206" alt="Tiktok">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.facebook.com/PYTCol" class="icon">
+                                                <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/Facebook.png?v=1674666206" alt="Facebook">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.instagram.com/pytcolombia/" class="icon">
+                                                <img src="https://cdn.shopify.com/s/files/1/0099/7169/5701/files/Instagram.png?v=1674666206" alt="Instagram">
+                                            </a>
+                                        </td>
+                                    </center>
+                                </tr>
+                            </table>
+                        </tr>
+                    </center>
+                </table>
+                <div class="mailContainer__footer">
+                    <span>PYT Colombia Derechos Reservados 2023</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
